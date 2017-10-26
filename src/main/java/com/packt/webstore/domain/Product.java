@@ -3,8 +3,14 @@ package com.packt.webstore.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@XmlRootElement
 public class Product implements Serializable {
 	/**
 	 * 
@@ -114,6 +120,8 @@ public class Product implements Serializable {
 		this.condition = condition;
 	}
 	
+	@JsonIgnore
+	@XmlTransient
 	public MultipartFile getProductImage() {
 		return productImage;
 	}
@@ -122,6 +130,8 @@ public class Product implements Serializable {
 		this.productImage = productImage;
 	}
 	
+	@JsonIgnore
+	@XmlTransient
 	public MultipartFile getProductGuide() {
 		return productGuide;
 	}

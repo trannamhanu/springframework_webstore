@@ -7,25 +7,27 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.domain.repository.ProductRepository;
+import com.packt.webstore.exception.ProductNotFoundException;
 
 @Repository
-public class InMemoryProductRepository implements ProductRepository{
+public class InMemoryProductRepository implements ProductRepository {
 
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
-	
+
 	public List<Product> getAllProducts() {
 		Map<String, Object> params = new HashMap<String, Object>();
 		List<Product> result = jdbcTemplate.query("SELECT * FROM PRODUCTS", params, new ProductMapper());
 		return result;
 	}
-	
+
 	private static final class ProductMapper implements RowMapper<Product> {
 
 		public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -42,7 +44,7 @@ public class InMemoryProductRepository implements ProductRepository{
 			product.setDiscounted(rs.getBoolean("DISCOUNTED"));
 			return product;
 		}
-		
+
 	}
 
 	public void updateStock(String productId, long units) {
@@ -64,15 +66,18 @@ public class InMemoryProductRepository implements ProductRepository{
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT * FROM PRODUCTS WHERE CATEGORY IN (:categories)");
 		sql.append(" AND MANUFACTURER IN (:brands)");
-		return jdbcTemplate.query(sql.toString(), filterParams, 
-				new ProductMapper());
+		return jdbcTemplate.query(sql.toString(), filterParams, new ProductMapper());
 	}
 
 	public Product getById(String id) {
 		String sql = "SELECT * FROM PRODUCTS WHERE ID = :id";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
-		return jdbcTemplate.queryForObject(sql, params, new ProductMapper());
+		try {
+			return jdbcTemplate.queryForObject(sql, params, new ProductMapper());
+		} catch (DataAccessException e) {
+			throw new ProductNotFoundException(id);
+		}
 	}
 
 	public void addProduct(Product product) {
@@ -82,7 +87,7 @@ public class InMemoryProductRepository implements ProductRepository{
 		sql.append(" UNITS_IN_ORDER, DISCOUNTED) VALUES (:id, :name,");
 		sql.append(" :description, :price, :manufacturer, :category,");
 		sql.append(" :condition, :inStock, :inOrder, :discount)");
-		
+
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", product.getProductId());
 		params.put("name", product.getName());
@@ -94,9 +99,9 @@ public class InMemoryProductRepository implements ProductRepository{
 		params.put("inStock", product.getUnitsInStock());
 		params.put("inOrder", product.getUnitsInOrder());
 		params.put("discount", product.isDiscounted());
-		
+
 		jdbcTemplate.update(sql.toString(), params);
-		
+
 	}
-	
+
 }

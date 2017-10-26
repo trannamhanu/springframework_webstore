@@ -9,11 +9,17 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Product Page</title>
+<title><spring:message code="addProduct.form.pageTitle.label"></spring:message></title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 <body>
+	<section>
+	<div class="pull-right" style="padding-right: 50px">
+		<a href="?lang=en">English</a>|<a href="?lang=vi">Vietnamese</a>|<a
+			href="<c:url value="/logout"></c:url>">Logout</a>
+	</div>
+	</section>
 	<section>
 	<div class="jumbotron">
 		<div class="container">
@@ -22,12 +28,13 @@
 	</div>
 	</section>
 	<section class="container"> <form:form method="POST"
-		modelAttribute="newProduct" class="form-horizontal" enctype="multipart/form-data">
+		modelAttribute="newProduct" class="form-horizontal"
+		enctype="multipart/form-data">
 		<fieldset>
 			<legend>Add new product</legend>
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="productId">
-					<spring:message code="addProduct.form.productId.label"></spring:message>
+				<label class="control-label col-lg-2" for="productId"> <spring:message
+						code="addProduct.form.productId.label"></spring:message>
 				</label>
 				<div class="col-lg-10">
 					<form:input path="productId" id="productId" type="text"
@@ -35,93 +42,99 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="name"><spring:message code="addProduct.form.name.label"></spring:message>
-					</label>
+				<label class="control-label col-lg-2" for="name"><spring:message
+						code="addProduct.form.name.label"></spring:message> </label>
 				<div class="col-lg-10">
 					<form:input path="name" id="name" type="text"
 						class="form:input-large" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="unitPrice">
-					<spring:message code="addProduct.form.unitPrice.label"></spring:message></label>
+				<label class="control-label col-lg-2" for="unitPrice"> <spring:message
+						code="addProduct.form.unitPrice.label"></spring:message></label>
 				<div class="col-lg-10">
 					<form:input path="unitPrice" id="unitPrice" type="text"
 						class="form:input-large" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="manufacturer"><spring:message code="addProduct.form.manufacturer.label"></spring:message>
-					</label>
+				<label class="control-label col-lg-2" for="manufacturer"><spring:message
+						code="addProduct.form.manufacturer.label"></spring:message> </label>
 				<div class="col-lg-10">
 					<form:input path="manufacturer" id="manufacturer" type="text"
 						class="form:input-large" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="category"><spring:message code="addProduct.form.category.label"></spring:message>
-					</label>
+				<label class="control-label col-lg-2" for="category"><spring:message
+						code="addProduct.form.category.label"></spring:message> </label>
 				<div class="col-lg-10">
 					<form:input path="category" id="category" type="text"
 						class="form:input-large" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="unitsInStock"><spring:message code="addProduct.form.inStock.label"></spring:message>
-					</label>
+				<label class="control-label col-lg-2" for="unitsInStock"><spring:message
+						code="addProduct.form.inStock.label"></spring:message> </label>
 				<div class="col-lg-10">
 					<form:input path="unitsInStock" id="unitsInStock" type="text"
 						class="form:input-large" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="unitsInOrder"><spring:message code="addProduct.form.inOrder.label"></spring:message>
-					</label>
+				<label class="control-label col-lg-2" for="unitsInOrder"><spring:message
+						code="addProduct.form.inOrder.label"></spring:message> </label>
 				<div class="col-lg-10">
 					<%-- <form:input path="unitsInOrder" id="unitsInOrder" type="text"
 						class="form:input-large" /> --%>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="description">
-					<spring:message code="addProduct.form.description.label"></spring:message></label>
+				<label class="control-label col-lg-2" for="description"> <spring:message
+						code="addProduct.form.description.label"></spring:message></label>
 				<div class="col-lg-10">
 					<form:textarea path="description" id="description" rows="3" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="discounted">
-					<spring:message code="addProduct.form.discounted.label"></spring:message></label>
+				<label class="control-label col-lg-2" for="discounted"> <spring:message
+						code="addProduct.form.discounted.label"></spring:message></label>
 				<div class="col-lg-10">
 					<%-- <form:checkbox path="discounted" id="discounted" /> --%>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="condition">
-					<spring:message code="addProduct.form.condition.label"></spring:message></label>
+				<label class="control-label col-lg-2" for="condition"> <spring:message
+						code="addProduct.form.condition.label"></spring:message></label>
 				<div class="col-lg-10">
-					<form:radiobutton path="condition" value="New" />New
-					<form:radiobutton path="condition" value="Old" />Old
-					<form:radiobutton path="condition" value="Refurbished" />Refurbished
+					<form:radiobutton path="condition" value="New" />
+					New
+					<form:radiobutton path="condition" value="Old" />
+					Old
+					<form:radiobutton path="condition" value="Refurbished" />
+					Refurbished
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="condition">
-					<spring:message code="addProduct.form.productImage.label"></spring:message></label>
+				<label class="control-label col-lg-2" for="condition"> <spring:message
+						code="addProduct.form.productImage.label"></spring:message></label>
 				<div class="col-lg-10">
-					<form:input id="productImage" path="productImage" type="file" class="form:input-large"></form:input>
+					<form:input id="productImage" path="productImage" type="file"
+						class="form:input-large"></form:input>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="condition">
-					<spring:message code="addProduct.form.productGuide.label"></spring:message></label>
+				<label class="control-label col-lg-2" for="condition"> <spring:message
+						code="addProduct.form.productGuide.label"></spring:message></label>
 				<div class="col-lg-10">
-					<form:input id="productGuide" path="productGuide" type="file" class="form:input-large"></form:input>
+					<form:input id="productGuide" path="productGuide" type="file"
+						class="form:input-large"></form:input>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
-					<input type="submit" id="btn-add" class="btn btn-primary" value="Add"/>
+					<input type="submit" id="btn-add" class="btn btn-primary"
+						value="Add" />
 				</div>
 			</div>
 		</fieldset>
