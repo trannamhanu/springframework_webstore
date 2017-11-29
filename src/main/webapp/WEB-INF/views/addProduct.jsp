@@ -96,13 +96,13 @@
 					<form:textarea path="description" id="description" rows="3" />
 				</div>
 			</div>
-			<div class="form-group">
+			<%-- <div class="form-group">
 				<label class="control-label col-lg-2" for="discounted"> <spring:message
 						code="addProduct.form.discounted.label"></spring:message></label>
 				<div class="col-lg-10">
-					<%-- <form:checkbox path="discounted" id="discounted" /> --%>
+					<form:checkbox path="discounted" id="discounted" />
 				</div>
-			</div>
+			</div> --%>
 			<div class="form-group">
 				<label class="control-label col-lg-2" for="condition"> <spring:message
 						code="addProduct.form.condition.label"></spring:message></label>

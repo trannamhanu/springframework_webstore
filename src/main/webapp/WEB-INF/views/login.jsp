@@ -56,10 +56,13 @@
 							<div class="input-group">
 								<label for="userName">Username</label>
 								<input type="text" class="form-control" id="userName" name="userName"/>
+								<br/>
 								<label for="userName">Password</label>
 								<input type="password" class="form-control" id="password" name="password"/>
+								
 							</div>
 							<div class="form-actions">
+								<br/>
 								<input type="submit" class="btn btn-block btn-primary" value="Log in"/>
 							</div>
 						</form>

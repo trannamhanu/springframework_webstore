@@ -18,6 +18,10 @@
 		<div class="container">
 			<h1>Products</h1>
 			<p>All the product available in store:</p>
+			<a
+				href="<spring:url value="/market/products/add"/>"
+				class="btn btn-default"> Add
+			</a>
 		</div>
 	</div>
 	</section>

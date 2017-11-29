@@ -49,14 +49,26 @@
 					<h4>${product.unitPrice}USD</h4>
 					</p>
 					<p>
+						<a href="<spring:url value="/pdf/${product.productId}.pdf"/>"
+							class="btn btn-default" target="_blank"> <span
+							class="glyphicon glyphicon-file"></span> Guide
+						</a>
+					</p>
+					<p>
+						<a href="<spring:url value="/market/products/update/${product.productId}"/>"
+							class="btn btn-default"> <span
+							class="glyphicon glyphicon-pencil"></span> Update
+						</a>
+					</p>
+					<p>
 						<a href="<spring:url value="/market/products"/>"
 							class="btn btn-default"> <span
 							class="glyphicon-hand-left glyphicon"></span> Back
 						</a>
 					</p>
-					<a href="#" class="btn btn-warning btn-large"> <span
+					<!-- <a href="#" class="btn btn-warning btn-large"> <span
 						class="glyphicon-shopping-cart glyphicon"></span> Order Now
-					</a>
+					</a> -->
 				</div>
 			</div>
 		</div>
